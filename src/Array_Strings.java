@@ -12,7 +12,9 @@ import java.util.HashSet;
 public class Array_Strings {
 
     public static void main(String[] args) {
-
+        Functions f = new Functions();
+        int[] arr = new int[]{1,2};
+        f.rotate(arr, 3);
     }
 }
 
@@ -78,5 +80,34 @@ class Functions
             }
         }
         return res;
+    }
+    
+    //http://www.programcreek.com/2015/03/rotate-array-in-java/
+    public void rotate(int[] nums, int k) {
+        k = k%nums.length;
+        // Divide array in 2 parts, nums.length-k and k
+        
+        // Reverse 1st part.
+        reverse(nums, 0, nums.length-k-1);
+        
+        // Reverse 2nd part
+        reverse(nums, nums.length-k, nums.length-1);
+        
+        // Reverse whole array
+        reverse(nums, 0, nums.length-1);
+    }
+    
+    public static void reverse(int[] arr, int left, int right){
+	if(arr == null || arr.length == 1) 
+		return;
+ 
+	while(left < right)
+        {
+		int temp = arr[left];
+		arr[left] = arr[right];
+		arr[right] = temp;
+		left++;
+		right--;
+	}	
     }
 }
